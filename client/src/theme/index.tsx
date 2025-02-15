@@ -27,7 +27,7 @@ const theme = {
         blue700: '#275789',
         blue800: '#102440',
         blue900: '#040D14',
-        blueHeader: '#1A3458',
+        blueHeader: '#204CE9',
     },
     fontSizes: {
         xs: '12px',
@@ -77,6 +77,15 @@ const theme = {
         72: '18rem',
         80: '20rem',
         96: '24rem',
+    },
+
+    components: {
+        Container: {
+            baseStyle: {
+                maxW: '95%',
+                px: 8,
+            },
+        },
     },
 }
 
