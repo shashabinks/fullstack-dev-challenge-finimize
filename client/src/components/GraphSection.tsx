@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Text } from '@chakra-ui/react'
+import { Box, Container, Text, Wrap, GridItem } from '@chakra-ui/react'
 import LineChart from './LineChart'
 import TipsPanel from './TipsPanel'
 import LabeledSliderInput from './LabeledSliderInput'
@@ -33,9 +33,9 @@ const GraphSection: React.FC<GraphSectionProps> = ({
     totalSavings,
 }) => {
     return (
-        <Container pt={6} flexDirection="column" marginBottom={10}>
-            <Box display="flex" flexDirection={{ base: 'column', md: 'row' }} padding={2}>
-                <Box flex="0.5" mr={5} mb={{ base: 4, md: 0 }} height="100%" gap={4}>
+        <Container pt={6} marginBottom={10}>
+            <Wrap justify={['flex-start']}>
+                <Box mr={10} mb={{ base: 4, md: 0 }} gap={4}>
                     <LabeledSliderInput
                         label="Initial Savings"
                         value={initialSavings}
@@ -68,17 +68,7 @@ const GraphSection: React.FC<GraphSectionProps> = ({
                         onChange={setInterestFrequency}
                     />
                 </Box>
-                <Box
-                    flex="1.0"
-                    mx={10}
-                    height="100%"
-                    mb={{ base: 4, md: 0 }}
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="flex-end"
-                    alignItems="center"
-                    padding={3}
-                >
+                <Box flex="0.6" mr={5}>
                     <LineChart
                         title="Savings Over Time"
                         xAxisData={chartData.xAxis}
@@ -87,7 +77,7 @@ const GraphSection: React.FC<GraphSectionProps> = ({
                         yLabel="Amount (£)"
                     />
                 </Box>
-                <Box flex="0.8" height="100%">
+                <Box flex="0.4" mr={5} mb={{ base: 4, md: 0 }} height="100%" gap={4}>
                     <Box>
                         <TipsPanel tips={tips} />
                     </Box>
@@ -102,12 +92,18 @@ const GraphSection: React.FC<GraphSectionProps> = ({
                                 £{totalSavings.toLocaleString('en-GB')}
                             </Text>
                         </Box>
-                        <Box display="flex" flexDirection="row" mb={4}>
-                            <Text fontSize="xl">in 50 years time 📈.</Text>
+                        <Box
+                            display="flex"
+                            flexDirection="row"
+                            mb={4}
+                            flex="1"
+                            justifyContent="flex-end"
+                        >
+                            <Text fontSize="xl">...in 50 years time 📈.</Text>
                         </Box>
                     </Box>
                 </Box>
-            </Box>
+            </Wrap>
         </Container>
     )
 }

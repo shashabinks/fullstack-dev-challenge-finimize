@@ -60,19 +60,24 @@ const LineChart = ({ xAxisData, yAxisData, title, xLabel, yLabel }: Props) => {
 
     return (
         <Box width="100%" height={430}>
-            <Line
-                data={{
-                    labels: xAxisData,
-                    datasets: [
-                        {
-                            backgroundColor: theme.colors.blue100,
-                            borderColor: theme.colors.primary,
-                            data: yAxisData,
-                        },
-                    ],
-                }}
-                options={options}
-            />
+            <Box
+                className="chart-container"
+                style={{ position: 'relative', height: '40vh', width: '50vw' }}
+            >
+                <Line
+                    data={{
+                        labels: xAxisData,
+                        datasets: [
+                            {
+                                backgroundColor: theme.colors.blue100,
+                                borderColor: theme.colors.primary,
+                                data: yAxisData,
+                            },
+                        ],
+                    }}
+                    options={options}
+                />
+            </Box>
         </Box>
     )
 }
