@@ -13,6 +13,7 @@
 - From a front-end perspective, playwright tests could do a solid job at ensuring components are functional.
 - An AI chatbot that performs speech-to-text and text-to-speech to allow users to actually speak the input values as well.
 - More dynamic/fluid components, support for mobile view (better than how its done at the moment).
+- Format the text, for example, the total amount to make it look more "friendly".
 
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/d571d5c8-c65d-48aa-b122-e20d3ac9c9b4)
