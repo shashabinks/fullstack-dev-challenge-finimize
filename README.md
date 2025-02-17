@@ -7,6 +7,7 @@
 ## What bits of your solution you like
 - Regarding the parts of the solution I liked, some of the features i.e. `Sliders` and `TipsPanel` listed above were simple yet intuitive features that create the biggest impact.
 - I also tried to make use of `Wrap` to adhere to window dimensions to enable support for mobile view.
+- I added a `InterestFrequency` select component to allow the user to change the rate of their interest being applied.
 
 ## What bits of your solution you’d like to improve upon or would develop next
 - More testing as I didn't have time to cover everything (both back-end and front-end).
