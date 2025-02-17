@@ -1,5 +1,25 @@
 # Finimize Frontend Development Challenge
 
+## How you approached the challenge?
+- The aim of the challenge was to enable users to calculate their savings over 50 years given their initial savings, monthly deposits and interest rate.
+- First of all, I approached the problem with modularity in mind; when the structure of a component begins to become long and convoluted, it is important to break it down further into smaller re-usable components. I achieved this with creating subcomponents such as `GraphSection` which acts as a container for the line chart, or creating `LabeledSliderInput` which helps with creating labeled sliders with their own styling. This approach improves not only readability of the components and overall flow, but also creates room for testing each individual component.
+- Secondly, usability. It was important to understand the people or users who would make use of this website, and question what small additions could one add to make the website a little bit more 'fluid'. I achieved this, and quite simply, by enlisting `Slider` components provided by ChakraUI. This prevents the user needing to even type their costs and instead just drag (and approximate) their savings/interest rate etc. Another yet small feature that I did add was a `TipsPanel`. Not everyone is a financial expert who will understand terms such as "interest rate", so adding a small tip box to the side ensures that everyone has an understanding of what each feature is.
+- For dealing with the backend side of things, I created an api util file to allow me to create a centralised asynchronous API utility. This allowed me to make calls to the server to get the data that needs to be plotted as well as other data such as `totalSavings`. I added in a new route called `/api/savings` into `server.ts` to enable me to get this data.
+
+## What bits of your solution you like
+- Regarding the parts of the solution I liked, some of the features i.e. `Sliders` and `TipsPanel` listed above were simple yet intuitive features that create the biggest impact.
+- I also tried to make use of `Wrap` to adhere to window dimensions to enable support for mobile view.
+
+## What bits of your solution you’d like to improve upon or would develop next
+- More testing as I didn't have time to cover everything (both back-end and front-end).
+- From a front-end perspective, playwright tests could do a solid job at ensuring components are functional.
+- An AI chatbot that performs speech-to-text and text-to-speech to allow users to actually speak the input values as well.
+- More dynamic/fluid components, support for mobile view (better than how its done at the moment).
+
+## Screenshots
+![image](https://github.com/user-attachments/assets/d571d5c8-c65d-48aa-b122-e20d3ac9c9b4)
+
+
 This repo is intended to be forked and uploaded to your own Github account in
 order to form the submission for the challenge. Once cloned, it will give you a basic server with a React app, so you don't have to spend time writing boilerplate code. Feel free to make any changes you wish - the existing code is purely intended to get you going faster.
 
@@ -77,3 +97,5 @@ We believe strong TS typing will make your code much more robust.
 We believe Prettier makes your life easier! There is an example .prettierrc included in the `frontend` directory - feel free to tweak the settings if you'd prefer.
 
 You might need to give your IDE a nudge to pick the settings up - [here's an example](https://stackoverflow.com/a/58669550/4388938) of how to do that with VS Code
+
+
