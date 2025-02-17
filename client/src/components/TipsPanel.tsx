@@ -12,11 +12,12 @@ const TipsPanel: React.FC<TipsPanelProps> = ({ tips }) => {
                 For Your Understanding 📚
             </Text>
             <Text>
-                <strong>• Monthly Deposit:</strong> the amount you plan to add each month.
+                <strong>• Monthly Deposit:</strong> the amount you plan to add to your savings each
+                month.
             </Text>
             <Text>
-                <strong>• Interest Rate:</strong> the annual percentage rate applied to your
-                savings.
+                <strong>• Interest Rate:</strong> the percentage of your savings that the bank pays
+                you each year.
             </Text>
         </Box>
     )
