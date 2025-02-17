@@ -1,5 +1,3 @@
-# Finimize Frontend Development Challenge
-
 ## How you approached the challenge?
 - The aim of the challenge was to enable users to calculate their savings over 50 years given their initial savings, monthly deposits and interest rate.
 - First of all, I approached the problem with modularity in mind; when the structure of a component begins to become long and convoluted, it is important to break it down further into smaller re-usable components. I achieved this with creating subcomponents such as `GraphSection` which acts as a container for the line chart, or creating `LabeledSliderInput` which helps with creating labeled sliders with their own styling. This approach improves not only readability of the components and overall flow, but also creates room for testing each individual component.
@@ -19,7 +17,7 @@
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/d571d5c8-c65d-48aa-b122-e20d3ac9c9b4)
 
-
+# Finimize Frontend Development Challenge
 This repo is intended to be forked and uploaded to your own Github account in
 order to form the submission for the challenge. Once cloned, it will give you a basic server with a React app, so you don't have to spend time writing boilerplate code. Feel free to make any changes you wish - the existing code is purely intended to get you going faster.
 
