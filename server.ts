@@ -43,8 +43,8 @@ function calculateSavingsData(
   let currentAmount = initialAmount;
 
   const interestPeriods = {
-    annually: 1,
     quarterly: 4,
+    monthly: 12,
   };
 
   const periodsPerYear =
@@ -60,15 +60,6 @@ function calculateSavingsData(
   }
 
   return { data, totalSavings: currentAmount.toFixed(2) };
-}
-
-function calculateEffectiveInterestRate(rate: number, frequency: string) {
-  if (frequency === "monthly") {
-    return (1 + rate / 100 / 12) ** 12 - 1;
-  } else if (frequency === "quarterly") {
-    return (1 + rate / 100 / 4) ** 4 - 1;
-  }
-  return rate / 100;
 }
 
 app.listen(app.get("port"), () => {
