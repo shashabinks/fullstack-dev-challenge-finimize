@@ -35,27 +35,31 @@ app.get("/api/savings", (req, res) => {
 function calculateSavingsData(
   initialAmount: number,
   monthlyDeposit: number,
-  interestRate: number,
-  compoundingFrequency: string
+  interestRate: number, // annual interest rate (e.g., 5% = 0.05)
+  interestFrequency: string // "monthly", "annually"
 ) {
   const years = 50;
   const data = [];
   let currentAmount = initialAmount;
 
-  const effectiveRate = calculateEffectiveInterestRate(
-    interestRate,
-    compoundingFrequency
-  );
+  const interestPeriods = {
+    annually: 1,
+    quarterly: 4,
+  };
+
+  const periodsPerYear =
+    interestPeriods[interestFrequency as keyof typeof interestPeriods] || 1;
+  const ratePerPeriod = interestRate / periodsPerYear;
 
   for (let year = 1; year <= years; year++) {
-    currentAmount += monthlyDeposit * 12;
-    currentAmount *= 1 + effectiveRate;
+    for (let period = 1; period <= periodsPerYear; period++) {
+      currentAmount += (monthlyDeposit * 12) / periodsPerYear; // spread deposits over periods
+      currentAmount *= 1 + ratePerPeriod; // apply interest
+    }
     data.push({ year, amount: currentAmount.toFixed(2) });
   }
 
-  const totalSavings = currentAmount.toFixed(2);
-
-  return { data, totalSavings };
+  return { data, totalSavings: currentAmount.toFixed(2) };
 }
 
 function calculateEffectiveInterestRate(rate: number, frequency: string) {
