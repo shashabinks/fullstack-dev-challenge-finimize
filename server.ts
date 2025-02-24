@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.get("/api/savings", (req, res) => {
-  const { initialAmount, monthlyDeposit, interestRate, compoundingFrequency } =
+  const { initialAmount, monthlyDeposit, interestRate, interestFrequency } =
     req.query;
 
   if (!initialAmount || !monthlyDeposit || !interestRate) {
@@ -26,7 +26,7 @@ app.get("/api/savings", (req, res) => {
     Number(initialAmount),
     Number(monthlyDeposit),
     Number(interestRate),
-    compoundingFrequency as string
+    interestFrequency as string
   );
 
   res.json(mockData);
@@ -35,31 +35,36 @@ app.get("/api/savings", (req, res) => {
 function calculateSavingsData(
   initialAmount: number,
   monthlyDeposit: number,
-  interestRate: number, // annual interest rate (e.g., 5% = 0.05)
-  interestFrequency: string // "monthly", "annually"
+  interestRate: number,
+  interestFrequency: string
 ) {
   const years = 50;
   const data = [];
   let currentAmount = initialAmount;
 
-  const interestPeriods = {
-    quarterly: 4,
-    monthly: 12,
-  };
-
-  const periodsPerYear =
-    interestPeriods[interestFrequency as keyof typeof interestPeriods] || 1;
-  const ratePerPeriod = interestRate / periodsPerYear;
+  const effectiveRate = calculateEffectiveInterestRate(
+    interestRate,
+    interestFrequency
+  );
 
   for (let year = 1; year <= years; year++) {
-    for (let period = 1; period <= periodsPerYear; period++) {
-      currentAmount += (monthlyDeposit * 12) / periodsPerYear; // spread deposits over periods
-      currentAmount *= 1 + ratePerPeriod; // apply interest
-    }
+    currentAmount += monthlyDeposit * 12;
+    currentAmount *= 1 + effectiveRate;
     data.push({ year, amount: currentAmount.toFixed(2) });
   }
 
-  return { data, totalSavings: currentAmount.toFixed(2) };
+  const totalSavings = currentAmount.toFixed(2);
+
+  return { data, totalSavings };
+}
+
+function calculateEffectiveInterestRate(rate: number, frequency: string) {
+  if (frequency === "monthly") {
+    return (1 + rate / 100 / 12) ** 12 - 1;
+  } else if (frequency === "quarterly") {
+    return (1 + rate / 100 / 4) ** 4 - 1;
+  }
+  return rate / 100;
 }
 
 app.listen(app.get("port"), () => {
